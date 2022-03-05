@@ -9,6 +9,6 @@ def parseRequest(request):
     except:
         return "Invalid Request"
     req = Request()
-    req.setHeaders(data.headers)
-    req.setBody(data.body)
+    req.setHeaders(data["headers"])
+    req.setBody(data["body"])
     return req

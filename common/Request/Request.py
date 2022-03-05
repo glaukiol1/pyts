@@ -1,5 +1,5 @@
 import json
-from headers.headers import Headers
+from common.headers.headers import Headers
 class Request:
     def __init__(self):
         # default values
@@ -17,7 +17,7 @@ class Request:
 
     def getRequest(self):
         request = {
-            "headers": self.Headers,
+            "headers": self.Headers.getHeaders(),
             "body": self.Body
         }
         return json.dumps(request)
