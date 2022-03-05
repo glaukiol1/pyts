@@ -1,4 +1,7 @@
-import Request as _Request
+from common.Request.Request import Request as _Request
+from headers.headers import Headers as _Headers
+from parseRequest import parseRequest as _pr
 
-Headers = _Request.Headers
-Request = _Request.Request
+Headers = _Headers
+Request = _Request
+parseRequest = _pr

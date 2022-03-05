@@ -1,5 +1,5 @@
 import socket
-import config
+import server.config as config
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 s.bind((config.HOST, config.PORT))
 while True:
