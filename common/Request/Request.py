@@ -1,13 +1,20 @@
 import json
+from client.sender import sendRequest
 from common.headers.headers import Headers
 class Request:
-    def __init__(self):
+    def __init__(self,HOST,PORT,ENDPOINT):
+        self.HOST = HOST
+        self.PORT = PORT
         # default values
         self.Headers = Headers("REQUEST")
+        self.Headers.setHeader("REQUEST-URL", f"pytf://{HOST}:{PORT}{ENDPOINT}")
+        self.Headers.setHeader("HOST", HOST)
+        self.Headers.setHeader("PORT", PORT)
+        self.Headers.setHeader("ENDPOINT", ENDPOINT)
         self.Body = {}
     
     def setHeaders(self,headers):
-        self.Headers = headers
+        self.Headers.headers = headers
 
     def setHeader(self,header,value):
         self.Headers.setHeader(header,value)
@@ -22,3 +29,5 @@ class Request:
         }
         return json.dumps(request)
     
+    def SendRequest(self):
+        sendRequest(self,self.HOST,self.PORT)
