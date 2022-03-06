@@ -11,4 +11,5 @@ def parseResponse(response):
     resp = Response(None)
     resp.setHeaders(data["headers"])
     resp.setBody(data["body"])
+    resp.setStatus(resp.Headers.getHeaders()["STATUS-CODE"],resp.Headers.getHeaders()["STATUS-TEXT"])
     return resp

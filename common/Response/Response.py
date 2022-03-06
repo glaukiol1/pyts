@@ -5,6 +5,8 @@ class Response:
         self.conn = conn
         # default values
         self.Headers = Headers("RESPONSE")
+        self.StatusCode = 0
+        self.StatusText = ""
         self.Body = {}
     def setHeaders(self,headers):
         self.Headers.headers = headers
@@ -15,6 +17,8 @@ class Response:
     def setStatus(self,code,text):
         self.Headers.setHeader("STATUS-TEXT", text)
         self.Headers.setHeader("STATUS-CODE", code)
+        self.StatusCode = code
+        self.StatusText = text
         self.Headers.setHeader("STATUS", f"{code} {text}")
 
     def setBody(self,body):
