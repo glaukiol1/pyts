@@ -1,9 +1,3 @@
-import socket
-import server.config as config
-s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-s.bind((config.HOST, config.PORT))
-while True:
-    s.listen()
-    conn, addr = s.accept()
-    with conn:
-        config.ON_CONNECTION(conn,addr)
+from server.server import startServer
+
+startServer("127.0.0.1", 3000)
