@@ -1,3 +1,4 @@
+from common.Response.NotFoundResponse import GetNotFoundResponse
 from common.Response.Response import Response
 from server.helpers.pData import pData
 
@@ -7,7 +8,10 @@ def onConnection(conn, addr, RouteHandlers):
     if data == None:
         # invalid request
         return
-    if RouteHandlers[data.Headers.headers["ENDPOINT"]] != None:
-        RouteHandlers[data.Headers.headers["ENDPOINT"]](data,Response(conn))
-    else:
-        conn.sendall(b"No handler")
+    try:
+        handler = RouteHandlers[data.Headers.headers["ENDPOINT"]]
+    except KeyError:
+        resp = GetNotFoundResponse(conn,data)
+        resp.SendResponse()
+        return
+    handler(data,Response(conn))
