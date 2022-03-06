@@ -1,4 +1,4 @@
-from common.Response.Response import Response
+from common.Response.Response import Response # only for a smother developing experience, remove this and the line below, while also removing them from the (index) function
 from common.Request.Request import Request
 from server.server import Server
 

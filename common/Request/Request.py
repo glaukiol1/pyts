@@ -34,5 +34,5 @@ class Request:
     
     def SendRequest(self) -> Response:
         req = sendRequest(self,self.HOST,self.PORT)
-        sleep(1)
+        sleep(0.3)
         return parseResponse(req)
