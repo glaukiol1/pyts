@@ -37,3 +37,70 @@ Thats it! Now you have access to the [*Response*](https://github.com/glaukiol1/p
 ```py
 response.StatusCode
 ```
+
+## **pyts** | Server
+
+The server recives requests on a certain port, and passes the request class and a newly created [*response*](https://github.com/glaukiol1/pyts/blob/main/common/Response/Response.py) class, with all the default values. To send the response back, you could use the [*response.SendResponse*](https://github.com/glaukiol1/pyts/blob/41cf27a0775d4b37c95cf4961a91b86a5b71edc4/common/Response/Response.py#L34) to send the response back.
+
+### Server instance
+
+To create a server, you do the following;
+
+```py
+app = Server(HOST, PORT)
+```
+
+- HOST = the host that you are going to run on, most likely `127.0.0.1`
+- PORT = the port where the pyts app will listen on.
+
+### Route handlers
+
+A route handler is a function that handles a request to a certain endpoint. To define a request handler, you make a function with two paramaters; request and response.
+
+```py
+def routeHandlerFunction(request:Request, resp:Response)
+```
+
+In this function, you would do all actions and return a response. Use the functions of the Response class to set the status, headers, and body.
+
+- Status: [*response.setStatus*](https://github.com/glaukiol1/pyts/blob/41cf27a0775d4b37c95cf4961a91b86a5b71edc4/common/Response/Response.py#L17)
+- Headers: [*response.setHeader*](https://github.com/glaukiol1/pyts/blob/41cf27a0775d4b37c95cf4961a91b86a5b71edc4/common/Response/Response.py#L14)
+- Body: [*response.setBody*](https://github.com/glaukiol1/pyts/blob/41cf27a0775d4b37c95cf4961a91b86a5b71edc4/common/Response/Response.py#L24)
+
+After you have set the fields that you wish to fill out, to send the response, you use [*response.SendResponse*](https://github.com/glaukiol1/pyts/blob/41cf27a0775d4b37c95cf4961a91b86a5b71edc4/common/Response/Response.py#L34).
+
+A very basic example would be;
+
+```py
+def routeHandlerFunction(request:Request, resp:Response):
+    resp.setStatus(200, "OK")
+    resp.setBody("<1>Index page</1>")
+    resp.SendResponse()
+```
+
+### Linking the route handler with the server instance
+
+Now, you need to actually link this function to a certain route; which you can achive via;
+
+```py
+app.routeHandler(ENDPOINT, routeHandlerFunction)
+```
+
+- ENDPOINT = the endpoint that this handler will handle,examples; `/`, `/endpoint`
+- routeHandlerFunction = the function you created that will handle the request.
+
+### Starting the server
+
+To start the server in the host and port you specified when creating the server instance, you can run;
+
+```py
+app.startServer()
+```
+
+It takes no paramaters, and will output in the terminal that looks something like this;
+
+```txt
+INFO:: Server started; HOST:PORT
+```
+
+Of course, HOST and PORT will be subsituted for whatever values you chose in initializing the [*Server*](https://github.com/glaukiol1/pyts/blob/main/server/server.py) class.
