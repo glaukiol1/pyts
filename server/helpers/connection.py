@@ -1,3 +1,4 @@
+from common.Response.Response import Response
 from server.helpers.pData import pData
 
 def onConnection(conn, addr, RouteHandlers):
@@ -7,7 +8,6 @@ def onConnection(conn, addr, RouteHandlers):
         # invalid request
         return
     if RouteHandlers[data.Headers.headers["ENDPOINT"]] != None:
-        conn.sendall(b"Found handler")
-        RouteHandlers[data.Headers.headers["ENDPOINT"]](data)
+        RouteHandlers[data.Headers.headers["ENDPOINT"]](data,Response(conn))
     else:
         conn.sendall(b"No handler")

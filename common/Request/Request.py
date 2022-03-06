@@ -1,6 +1,9 @@
 import json
+from time import sleep
 from client.sender import sendRequest
+from common.Response.Response import Response
 from common.headers.headers import Headers
+from common.parseResponse import parseResponse
 class Request:
     def __init__(self,HOST,PORT,ENDPOINT):
         self.HOST = HOST
@@ -29,5 +32,7 @@ class Request:
         }
         return json.dumps(request)
     
-    def SendRequest(self):
-        sendRequest(self,self.HOST,self.PORT)
+    def SendRequest(self) -> Response:
+        req = sendRequest(self,self.HOST,self.PORT)
+        sleep(1)
+        return parseResponse(req)

@@ -4,4 +4,5 @@ PORT = 3000  # The port used by the server
 
 req = Request(HOST,PORT,"/")
 req.setBody({"test": True})
-req.SendRequest()
+resp = req.SendRequest()
+print(resp.Headers.getHeaders()["STATUS"])
