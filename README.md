@@ -1,6 +1,6 @@
 # **pyts** | Python Transfer System
 
-Data transfering system written in Python. HTTP-like, with headers and body for request/response. It uses sockets for communicating between server and client. Easy programming for endpoints; you can set route handlers with a function, which will give you access to two parameters, [*request*](https://github.com/glaukiol1/pyts/blob/main/common/Response/Response.py) and [*response*](https://github.com/glaukiol1/pyts/blob/main/common/Response/Response.py). You can use the response arguemnt to set headers and data, and you could call [*response.SendResponse()*](https://github.com/glaukiol1/pyts/blob/91a5b74e20154b968d91cc59b1b0b908c98072e8/common/Response/Response.py#L34) to send it back to the client.
+Data transfering system written in Python. HTTP-like, with headers and body for request/response. It uses sockets for communicating between server and client. Easy programming for endpoints; you can set route handlers with a function, which will give you access to two parameters, [*request*](https://github.com/glaukiol1/pyts/blob/main/common/Response/Response.py) and [*response*](https://github.com/glaukiol1/pyts/blob/main/common/Response/Response.py). You can use the response arguemnt to set headers and data, and you could call [*response.SendResponse()*](https://github.com/glaukiol1/pyts/blob/6dbfafb52011272d037195216d320f362716f8a7/common/Response/Response.py#L34) to send it back to the client.
 
 ## **pyts** | Client
 
@@ -32,7 +32,7 @@ Now that our request is all set up, we can now send it. Call the [*request.SendR
 response = req.SendRequest()
 ```
 
-Thats it! Now you have access to the [*Response*](https://github.com/glaukiol1/pyts/blob/91a5b74e20154b968d91cc59b1b0b908c98072e8/common/Response/Response.py) class. You have access to all the headers and data sent back. To get the status code, you can use;
+Thats it! Now you have access to the [*Response*](https://github.com/glaukiol1/pyts/blob/main/common/Response/Response.py) class. You have access to all the headers and data sent back. To get the status code, you can use;
 
 ```py
 response.StatusCode
